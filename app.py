@@ -328,8 +328,8 @@ def api_domains():
     return jsonify(sorted(domains))
 
 if __name__ == "__main__":
-    print("\n╔══════════════════════════════════════════════╗")
-    print("║   ArchIntel — Enterprise Architecture AI     ║")
-    print("║   Demo server running on http://localhost:5003 ║")
-    print("╚══════════════════════════════════════════════╝\n")
-    app.run(host="0.0.0.0", port=5003, debug=True)
+    import os
+    port  = int(os.environ.get("PORT", 5003))
+    debug = os.environ.get("FLASK_ENV") == "development"
+    print(f"\n  ArchIntel running on http://0.0.0.0:{port}\n")
+    app.run(host="0.0.0.0", port=port, debug=debug)
